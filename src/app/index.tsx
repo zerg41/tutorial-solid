@@ -3,19 +3,19 @@ import type { Component } from 'solid-js';
 import logo from '../assets/logo.svg';
 
 import styles from './style.module.css';
+import { Bookshelf, HelloWorld } from '../components';
 
 const App: Component = () => {
   return (
     <div class={styles.App}>
-      <header class={styles.header}>
+      <header>
         <img src={logo} class={styles.logo} alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a class={styles.link} href='https://github.com/solidjs/solid' target='_blank' rel='noopener noreferrer'>
-          Learn Solid
-        </a>
       </header>
+      <main>
+        <h1>Welcome!</h1>
+        <HelloWorld />
+        <Bookshelf name='zerg41' />
+      </main>
     </div>
   );
 };
