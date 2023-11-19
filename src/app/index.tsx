@@ -7,11 +7,11 @@ import styles from './style.module.css';
 
 const App: Component = () => {
   return (
-    <div class={styles.App}>
-      <header>
+    <div class={styles.app}>
+      <header class={styles.header}>
         <img src={logo} class={styles.logo} alt='logo' />
       </header>
-      <main>
+      <main class={styles.main}>
         <h1>Welcome!</h1>
         {/* <HelloWorld /> */}
         <Bookshelf name='zerg41' />

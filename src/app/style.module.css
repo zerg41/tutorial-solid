@@ -1,14 +1,29 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-  height: 100vh;
+.app {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding-top: 5vmin;
   box-sizing: border-box;
+  padding: 5vmin 0;
+  height: 100vh;
+
+  background-color: #282c34;
+
+  text-align: center;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .logo {

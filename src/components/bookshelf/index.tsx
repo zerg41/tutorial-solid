@@ -31,19 +31,19 @@ const Bookshelf: Component<BookshelfProps> = (props) => {
   }
 
   return (
-    <>
+    <section class={styles.bookshelf}>
       <h2>{props.name}'s Bookshelf</h2>
-      <div class={styles.bookshelf}>
-        <BookList books={books()} />
-        <div class={styles.divider} />
+      <div class={styles.content}>
         <div class={styles.control}>
           <Show when={showForm()} fallback={<button onClick={toggleForm}>Add a book</button>}>
             <button onClick={toggleForm}>Finished adding books</button>
             <AddBook onAdd={addBook} />
           </Show>
         </div>
+        <div class={styles.divider} />
+        <BookList books={books()} />
       </div>
-    </>
+    </section>
   );
 };
 

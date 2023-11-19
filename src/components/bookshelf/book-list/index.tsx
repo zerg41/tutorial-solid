@@ -13,8 +13,8 @@ const BookList: Component<BookListProps> = (props) => {
   const totalBooks = () => props.books.length;
 
   return (
-    <div>
-      <h2 class={styles.total}>My books ({totalBooks()}):</h2>
+    <div class={styles.bookList}>
+      <h3 class={styles.total}>My books ({totalBooks()}):</h3>
       <ul class={styles.list}>
         <For each={props.books}>
           {({ title, author }) => (

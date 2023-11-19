@@ -27,10 +27,11 @@ const AddBook: Component<AddBookProps> = (props) => {
   return (
     <>
       <form class={styles.form}>
-        <div class={styles.input}>
-          <label for='title'>Search books</label>
+        <div class={styles.field}>
+          <label for='title'>Search books:</label>
           <input
             id='title'
+            class={styles.input}
             value={input()}
             onInput={(e) => {
               setInput(e.currentTarget.value);

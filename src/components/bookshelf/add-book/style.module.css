@@ -1,19 +1,23 @@
 .form {
   display: flex;
+  align-items: end;
+  gap: 8px;
+  width: 320px;
+}
+
+.field {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  row-gap: 12px;
-  width: 500px;
+  gap: 4px;
 }
 
 .input {
-  display: flex;
-  column-gap: 12px;
+  padding: 0.5rem;
 }
 
 .button {
   padding: 0.5rem;
-  width: 200px;
 
   border: none;
   border-radius: 6px;
@@ -40,15 +44,12 @@
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 200px;
-  width: 500px;
-  overflow: auto;
+  width: 320px;
   list-style: none;
-  padding: 0;
+  padding: 0 4px 0 0;
   margin: 0;
 
+  overflow: auto;
   text-align: start;
+  box-sizing: border-box;
 }
