@@ -14,6 +14,8 @@ type AddBookProps = {
 const AddBook: Component<AddBookProps> = (props) => {
   const [newBook, setNewBook] = createSignal(emptyBook);
 
+  const isButtonDisabled = () => !newBook().title || !newBook().author;
+
   function handleClick(event: MouseEvent): void {
     event.preventDefault();
 
@@ -43,7 +45,7 @@ const AddBook: Component<AddBookProps> = (props) => {
           }}
         />
       </div>
-      <button type='submit' class={styles.button} onClick={handleClick}>
+      <button type='submit' class={styles.button} disabled={isButtonDisabled()} onClick={handleClick}>
         Add book
       </button>
     </form>

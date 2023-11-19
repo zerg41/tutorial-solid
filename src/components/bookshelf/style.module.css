@@ -10,3 +10,10 @@
   height: 250px;
   background-color: whitesmoke;
 }
+
+.control {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  align-items: flex-start;
+}

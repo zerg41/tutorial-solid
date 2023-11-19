@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js';
-import { createSignal } from 'solid-js';
+import { Show, createSignal } from 'solid-js';
 
 import BookList from './book-list';
 import AddBook from './add-book';
@@ -20,6 +20,11 @@ type BookshelfProps = {
 
 const Bookshelf: Component<BookshelfProps> = (props) => {
   const [books, setBooks] = createSignal(initialBooks);
+  const [showForm, setShowForm] = createSignal(false);
+
+  function toggleForm(): void {
+    setShowForm((prev) => !prev);
+  }
 
   function addBook(book: IBook): void {
     setBooks((prev) => [...prev, book]);
@@ -31,7 +36,12 @@ const Bookshelf: Component<BookshelfProps> = (props) => {
       <div class={styles.bookshelf}>
         <BookList books={books()} />
         <div class={styles.divider} />
-        <AddBook onAdd={addBook} />
+        <div class={styles.control}>
+          <Show when={showForm()} fallback={<button onClick={toggleForm}>Add a book</button>}>
+            <button onClick={toggleForm}>Finished adding books</button>
+            <AddBook onAdd={addBook} />
+          </Show>
+        </div>
       </div>
     </>
   );
