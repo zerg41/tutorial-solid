@@ -1,9 +1,9 @@
 import type { Component } from 'solid-js';
 
+import { Bookshelf, Counter, HelloWorld } from '../components';
 import logo from '../assets/logo.svg';
 
 import styles from './style.module.css';
-import { Bookshelf, HelloWorld } from '../components';
 
 const App: Component = () => {
   return (
@@ -13,8 +13,9 @@ const App: Component = () => {
       </header>
       <main>
         <h1>Welcome!</h1>
-        <HelloWorld />
+        {/* <HelloWorld /> */}
         <Bookshelf name='zerg41' />
+        {/* <Counter /> */}
       </main>
     </div>
   );

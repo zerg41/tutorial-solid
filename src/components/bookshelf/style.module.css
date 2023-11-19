@@ -1,0 +1,12 @@
+.bookshelf {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  column-gap: 24px;
+}
+
+.divider {
+  width: 2px;
+  height: 250px;
+  background-color: whitesmoke;
+}
