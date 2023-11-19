@@ -1,54 +1,73 @@
 import type { Component } from 'solid-js';
-import { createSignal } from 'solid-js';
+import { For, Show, createResource, createSignal } from 'solid-js';
+
+import { searchBooks } from '../searchBooks';
 
 import type { IBook } from '../types';
 
 import styles from './style.module.css';
-
-const emptyBook: IBook = { title: '', author: '' };
 
 type AddBookProps = {
   onAdd: (book: IBook) => void;
 };
 
 const AddBook: Component<AddBookProps> = (props) => {
-  const [newBook, setNewBook] = createSignal(emptyBook);
+  const [input, setInput] = createSignal('');
+  const [query, setQuery] = createSignal('');
+  const [data] = createResource(query, searchBooks);
 
-  const isButtonDisabled = () => !newBook().title || !newBook().author;
+  const isButtonDisabled = () => !input();
 
-  function handleClick(event: MouseEvent): void {
+  function handleSearchButtonClick(event: MouseEvent): void {
     event.preventDefault();
 
-    props.onAdd(newBook());
-    setNewBook(emptyBook);
+    setQuery(input());
   }
 
   return (
-    <form class={styles.form}>
-      <div class={styles.input}>
-        <label for='title'>Book name</label>
-        <input
-          id='title'
-          value={newBook().title}
-          onInput={(event) => {
-            setNewBook(({ author }) => ({ author, title: event.currentTarget.value }));
-          }}
-        />
-      </div>
-      <div class={styles.input}>
-        <label for='author'>Author</label>
-        <input
-          id='author'
-          value={newBook().author}
-          onInput={(event) => {
-            setNewBook(({ title }) => ({ title, author: event.currentTarget.value }));
-          }}
-        />
-      </div>
-      <button type='submit' class={styles.button} disabled={isButtonDisabled()} onClick={handleClick}>
-        Add book
-      </button>
-    </form>
+    <>
+      <form class={styles.form}>
+        <div class={styles.input}>
+          <label for='title'>Search books</label>
+          <input
+            id='title'
+            value={input()}
+            onInput={(e) => {
+              setInput(e.currentTarget.value);
+            }}
+          />
+        </div>
+        <button
+          type='submit'
+          classList={{ [styles.button]: true, [styles.disabled]: isButtonDisabled() }}
+          disabled={isButtonDisabled()}
+          onClick={handleSearchButtonClick}
+        >
+          Search
+        </button>
+      </form>
+      <Show when={!data.loading} fallback={<>Searching...</>}>
+        <ul class={styles.list}>
+          <For each={data()}>
+            {(book) => (
+              <li>
+                <button
+                  aria-label={`Add ${book.title} by ${book.author} to the bookshelf`}
+                  onClick={(event) => {
+                    event.preventDefault();
+
+                    props.onAdd(book);
+                  }}
+                >
+                  Add
+                </button>{' '}
+                {book.title} by {book.author}
+              </li>
+            )}
+          </For>
+        </ul>
+      </Show>
+    </>
   );
 };
 
